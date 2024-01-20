@@ -31,11 +31,11 @@ A Command Line Interface (CLI) Contact Management System is a text-based program
 
 - Users are able to delete contacts when they are no longer needed
 
-### Prerequisites
+## Prerequisites
 
 - Python: 3.10.5 (64bit)
 
-### Dependencies
+## Dependencies
 
 - tabulate
 
