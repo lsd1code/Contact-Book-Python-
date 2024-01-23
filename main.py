@@ -1,11 +1,11 @@
 from sys import exit
 from filehandler import FileHandler
 from utils import get_choice_prompt, no_contacts_msg, display_contacts_msg
+from dataclasses import dataclass
 
-
+@dataclass
 class ContactBook:
-    def __init__(self, title: str) -> None:
-        self.title = title
+    title: str
         
         
     def display_contacts(self) -> None:
@@ -88,7 +88,22 @@ class ContactBook:
     
     
     def remove_contact(self) -> None:
-        pass
+        name = input('Contact name: ')
+        contact = self.find_contact(name)
+        
+        if not contact:
+            print(f'\nSorry, {name.title()} does not exist in the contact book\n')
+            return
+        
+        contacts = FileHandler.load_contacts()
+        
+        new_contacts = [
+            contact for contact in contacts if contact['name'] != name
+        ]
+                
+        FileHandler.dump(new_contacts)
+        
+        print(f'{name} has been removed succesfully')
     
     
     def find_contact(self, name: str, recurse=False) -> dict | list | None:
@@ -145,7 +160,7 @@ class ContactBook:
 
 def main() -> None:
     phone_book = ContactBook('hello test')
-    phone_book.run()    
+    phone_book.run()  
     
 
 if __name__ == '__main__':
