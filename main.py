@@ -5,6 +5,8 @@ from dataclasses import dataclass
 
 @dataclass
 class ContactBook:
+    """Contact book management system main class"""
+    
     title: str
         
         
@@ -47,6 +49,8 @@ class ContactBook:
 
     
     def search_contact(self) -> str | None:
+        """Function that allows the user to search for a specific contact/contacts with the same name"""
+        
         name = input('Contact name: ')
 
         contacts = self.find_contact(name, recurse=True)        
@@ -59,6 +63,8 @@ class ContactBook:
         
     
     def update_contact(self) -> None:
+        """Function that updates a specified contact"""
+        
         name = input('Contact name: ')
         contact = self.find_contact(name)
 
@@ -88,6 +94,8 @@ class ContactBook:
     
     
     def remove_contact(self) -> None:
+        """Function that removes a contact from the contact book"""
+        
         name = input('Contact name: ')
         contact = self.find_contact(name)
         
@@ -107,6 +115,8 @@ class ContactBook:
     
     
     def find_contact(self, name: str, recurse=False) -> dict | list | None:
+        """Function that finds a specific contact or multiple contacts with the same name if the recurse flag is set to True"""
+        
         contacts = FileHandler.load_contacts()
 
         if not len(contacts): 
@@ -142,7 +152,7 @@ class ContactBook:
     
     def run(self) -> None:
         """Function that runs the program"""
-       
+        
         while True:
             try:
                 choice = self.get_choice()
